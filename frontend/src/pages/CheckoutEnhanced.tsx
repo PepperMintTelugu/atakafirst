@@ -653,7 +653,7 @@ export default function CheckoutEnhanced() {
                         </div>
                       </div>
 
-                      <div>
+                      <div key="landmark-field">
                         <Label htmlFor="landmark">Landmark (Optional)</Label>
                         <Input
                           id="landmark"
