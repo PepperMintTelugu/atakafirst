@@ -866,7 +866,7 @@ export default function CheckoutEnhanced() {
               </CardHeader>
               <CardContent className="space-y-4">
                 {/* Order Items */}
-                <div className="space-y-3">
+                <div key="order-items-section" className="space-y-3">
                   {items.map((item) => (
                     <div key={item.id} className="flex items-center space-x-3">
                       <img
