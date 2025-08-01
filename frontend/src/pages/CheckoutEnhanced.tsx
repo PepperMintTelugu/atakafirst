@@ -458,13 +458,13 @@ export default function CheckoutEnhanced() {
       {/* Header */}
       <div key="checkout-header" className="bg-white border-b">
         <div key="header-container" className="container mx-auto px-4 py-4">
-          <div className="flex items-center space-x-4">
+          <div key="header-nav" className="flex items-center space-x-4">
             <Link
               key="back-link"
               to="/cart"
               className="flex items-center text-gray-600 hover:text-gray-900"
             >
-              <ArrowLeft className="w-5 h-5 mr-2" />
+              <ArrowLeft key="back-arrow" className="w-5 h-5 mr-2" />
               Back to Cart
             </Link>
             <div key="separator" className="h-6 w-px bg-gray-300"></div>
@@ -474,27 +474,29 @@ export default function CheckoutEnhanced() {
           </div>
 
           {/* Progress Indicator */}
-          <div className="mt-4 flex items-center space-x-4">
+          <div key="progress-indicator" className="mt-4 flex items-center space-x-4">
             <div key="step-1" className="flex items-center">
               <div
+                key="step-1-circle"
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-medium ${
                   currentStep >= 1 ? "bg-green-500" : "bg-gray-300"
                 }`}
               >
-                {currentStep > 1 ? <CheckCircle className="w-4 h-4" /> : "1"}
+                {currentStep > 1 ? <CheckCircle key="check-icon" className="w-4 h-4" /> : "1"}
               </div>
-              <span className="ml-2 text-sm font-medium">Shipping Address</span>
+              <span key="step-1-label" className="ml-2 text-sm font-medium">Shipping Address</span>
             </div>
             <div key="divider" className="flex-1 h-px bg-gray-300"></div>
             <div key="step-2" className="flex items-center">
               <div
+                key="step-2-circle"
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-medium ${
                   currentStep >= 2 ? "bg-blue-500" : "bg-gray-300"
                 }`}
               >
                 2
               </div>
-              <span className="ml-2 text-sm font-medium">Payment</span>
+              <span key="step-2-label" className="ml-2 text-sm font-medium">Payment</span>
             </div>
           </div>
         </div>
@@ -695,57 +697,57 @@ export default function CheckoutEnhanced() {
                               <SelectValue placeholder="Select state" />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="andhra-pradesh">
+                              <SelectItem key="state-ap" value="andhra-pradesh">
                                 Andhra Pradesh
                               </SelectItem>
-                              <SelectItem value="telangana">
+                              <SelectItem key="state-ts" value="telangana">
                                 Telangana
                               </SelectItem>
-                              <SelectItem value="karnataka">
+                              <SelectItem key="state-ka" value="karnataka">
                                 Karnataka
                               </SelectItem>
-                              <SelectItem value="tamil-nadu">
+                              <SelectItem key="state-tn" value="tamil-nadu">
                                 Tamil Nadu
                               </SelectItem>
-                              <SelectItem value="kerala">Kerala</SelectItem>
-                              <SelectItem value="maharashtra">
+                              <SelectItem key="state-kl" value="kerala">Kerala</SelectItem>
+                              <SelectItem key="state-mh" value="maharashtra">
                                 Maharashtra
                               </SelectItem>
-                              <SelectItem value="delhi">Delhi</SelectItem>
-                              <SelectItem value="west-bengal">
+                              <SelectItem key="state-dl" value="delhi">Delhi</SelectItem>
+                              <SelectItem key="state-wb" value="west-bengal">
                                 West Bengal
                               </SelectItem>
-                              <SelectItem value="gujarat">Gujarat</SelectItem>
-                              <SelectItem value="rajasthan">
+                              <SelectItem key="state-gj" value="gujarat">Gujarat</SelectItem>
+                              <SelectItem key="state-rj" value="rajasthan">
                                 Rajasthan
                               </SelectItem>
-                              <SelectItem value="uttar-pradesh">
+                              <SelectItem key="state-up" value="uttar-pradesh">
                                 Uttar Pradesh
                               </SelectItem>
-                              <SelectItem value="bihar">Bihar</SelectItem>
-                              <SelectItem value="odisha">Odisha</SelectItem>
-                              <SelectItem value="jharkhand">
+                              <SelectItem key="state-br" value="bihar">Bihar</SelectItem>
+                              <SelectItem key="state-od" value="odisha">Odisha</SelectItem>
+                              <SelectItem key="state-jh" value="jharkhand">
                                 Jharkhand
                               </SelectItem>
-                              <SelectItem value="chhattisgarh">
+                              <SelectItem key="state-ct" value="chhattisgarh">
                                 Chhattisgarh
                               </SelectItem>
-                              <SelectItem value="madhya-pradesh">
+                              <SelectItem key="state-mp" value="madhya-pradesh">
                                 Madhya Pradesh
                               </SelectItem>
-                              <SelectItem value="haryana">Haryana</SelectItem>
-                              <SelectItem value="punjab">Punjab</SelectItem>
-                              <SelectItem value="himachal-pradesh">
+                              <SelectItem key="state-hr" value="haryana">Haryana</SelectItem>
+                              <SelectItem key="state-pb" value="punjab">Punjab</SelectItem>
+                              <SelectItem key="state-hp" value="himachal-pradesh">
                                 Himachal Pradesh
                               </SelectItem>
-                              <SelectItem value="uttarakhand">
+                              <SelectItem key="state-uk" value="uttarakhand">
                                 Uttarakhand
                               </SelectItem>
-                              <SelectItem value="jammu-kashmir">
+                              <SelectItem key="state-jk" value="jammu-kashmir">
                                 Jammu & Kashmir
                               </SelectItem>
-                              <SelectItem value="assam">Assam</SelectItem>
-                              <SelectItem value="goa">Goa</SelectItem>
+                              <SelectItem key="state-as" value="assam">Assam</SelectItem>
+                              <SelectItem key="state-ga" value="goa">Goa</SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
