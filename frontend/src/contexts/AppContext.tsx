@@ -189,12 +189,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
 export function useApp() {
   const context = useContext(AppContext);
-
-  if (!context) {
-    console.error("AppContext is null. Make sure AppProvider is properly wrapping your component");
-    throw new Error("useApp must be used within an AppProvider");
-  }
-
   return context;
 }
 
