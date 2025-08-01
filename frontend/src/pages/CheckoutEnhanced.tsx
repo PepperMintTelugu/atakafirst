@@ -779,7 +779,7 @@ export default function CheckoutEnhanced() {
 
             {/* Step 2: Payment */}
             {currentStep === 2 && (
-              <Card>
+              <Card key="payment-card">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <CreditCard className="w-5 h-5 mr-2" />
