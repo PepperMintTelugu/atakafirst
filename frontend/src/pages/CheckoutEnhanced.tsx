@@ -946,7 +946,7 @@ export default function CheckoutEnhanced() {
                   onClick={handlePlaceOrder}
                   className="w-full h-12"
                   disabled={isProcessing}
-                  style={{ backgroundColor: settings.theme.primary }}
+                  style={{ backgroundColor: settings?.theme?.primary || "#6366f1" }}
                 >
                   {isProcessing
                     ? "Processing..."
