@@ -522,11 +522,11 @@ export default function CheckoutEnhanced() {
               <Card key="shipping-address-card">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
-                    <div className="flex items-center">
+                    <div key="title-left" className="flex items-center">
                       <MapPin className="w-5 h-5 mr-2" />
                       Shipping Address
                     </div>
-                    <div className="flex items-center space-x-2">
+                    <div key="title-actions" className="flex items-center space-x-2">
                       <Button
                         key="gps-button"
                         variant="outline"
