@@ -677,7 +677,7 @@ export default function CheckoutEnhanced() {
                             placeholder="City"
                           />
                         </div>
-                        <div>
+                        <div key="state-field">
                           <Label htmlFor="state">State *</Label>
                           <Select
                             value={address.state}
