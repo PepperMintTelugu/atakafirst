@@ -927,6 +927,7 @@ export default function CheckoutEnhanced() {
                 )}
 
                 <Button
+                  key="place-order-button"
                   onClick={handlePlaceOrder}
                   className="w-full h-12"
                   disabled={isProcessing}
@@ -939,7 +940,7 @@ export default function CheckoutEnhanced() {
                       : `Pay ₹${finalAmount.toLocaleString()}`}
                 </Button>
 
-                <div className="text-center text-xs text-gray-500">
+                <div key="terms-section" className="text-center text-xs text-gray-500">
                   <p>
                     By placing your order, you agree to our{" "}
                     <Link to="/terms" className="underline">
