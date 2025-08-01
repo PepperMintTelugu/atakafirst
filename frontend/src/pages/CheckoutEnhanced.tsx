@@ -450,7 +450,7 @@ export default function CheckoutEnhanced() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div key="checkout-enhanced-wrapper" className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
