@@ -958,7 +958,7 @@ export default function CheckoutEnhanced() {
                 </div>
 
                 {shippingCost === 0 && (
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                  <div key="free-delivery-banner" className="bg-green-50 border border-green-200 rounded-lg p-3">
                     <div
                       key="free-delivery-header"
                       className="flex items-center space-x-2 text-green-600"
