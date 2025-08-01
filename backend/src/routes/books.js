@@ -49,6 +49,44 @@ router.get(
         });
       }
 
+      // Check if MongoDB is connected
+      const mongoose = await import("mongoose");
+      if (mongoose.default.connection.readyState !== 1) {
+        // Return mock data if MongoDB is not connected
+        return res.json({
+          success: true,
+          message: "Using mock data (MongoDB not connected)",
+          data: [
+            {
+              _id: "mock1",
+              title: "Sample Telugu Book",
+              description: "A sample book for development",
+              author: "Sample Author",
+              language: "Telugu",
+              category: "Fiction",
+              price: 299,
+              discountPrice: 249,
+              isbn: "978-0000000001",
+              publishedDate: new Date().toISOString(),
+              publisher: "Sample Publisher",
+              pages: 200,
+              stock: 10,
+              images: ["https://via.placeholder.com/300x400"],
+              rating: 4.5,
+              reviewsCount: 25,
+              salesCount: 100
+            }
+          ],
+          pagination: {
+            currentPage: 1,
+            totalPages: 1,
+            totalBooks: 1,
+            hasNextPage: false,
+            hasPrevPage: false
+          }
+        });
+      }
+
       const page = parseInt(req.query.page) || 1;
       const limit = parseInt(req.query.limit) || 20;
       const skip = (page - 1) * limit;
