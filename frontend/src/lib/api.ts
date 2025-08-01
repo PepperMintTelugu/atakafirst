@@ -237,7 +237,10 @@ class ApiClient {
           body: JSON.stringify(orderData),
         });
       } catch (error) {
-        console.warn("Dev payment endpoint failed, falling back to regular endpoint:", error);
+        console.warn(
+          "Dev payment endpoint failed, falling back to regular endpoint:",
+          error,
+        );
       }
     }
 
@@ -273,7 +276,10 @@ class ApiClient {
           body: JSON.stringify(paymentData),
         });
       } catch (error) {
-        console.warn("Dev payment verification failed, falling back to regular endpoint:", error);
+        console.warn(
+          "Dev payment verification failed, falling back to regular endpoint:",
+          error,
+        );
       }
     }
 

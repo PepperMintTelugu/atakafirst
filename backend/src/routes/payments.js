@@ -439,10 +439,15 @@ router.post(
 // @desc    Create payment order (development only)
 // @route   POST /api/payments/dev/create-order
 // @access  Public (development only)
-if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
+if (process.env.NODE_ENV === "development" || !process.env.NODE_ENV) {
   router.post("/dev/create-order", async (req, res) => {
     try {
-      const { amount, currency = "INR", items = [], shippingAddress = {} } = req.body;
+      const {
+        amount,
+        currency = "INR",
+        items = [],
+        shippingAddress = {},
+      } = req.body;
 
       // Return mock payment order for development
       const mockOrderId = `dev_order_${Date.now()}`;
@@ -454,8 +459,8 @@ if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
           razorpayOrderId: `razorpay_${mockOrderId}`,
           amount: amount || 100,
           currency: currency,
-          key: process.env.RAZORPAY_KEY_ID || "dev_key"
-        }
+          key: process.env.RAZORPAY_KEY_ID || "dev_key",
+        },
       });
     } catch (error) {
       console.error("Dev payment creation error:", error);
@@ -470,7 +475,8 @@ if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
   // Development payment verification endpoint
   router.post("/dev/verify-payment", async (req, res) => {
     try {
-      const { razorpayOrderId, razorpayPaymentId, razorpaySignature, orderId } = req.body;
+      const { razorpayOrderId, razorpayPaymentId, razorpaySignature, orderId } =
+        req.body;
 
       // Mock verification for development
       return res.json({
@@ -481,9 +487,9 @@ if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
             id: orderId || `order_${Date.now()}`,
             status: "paid",
             amount: 100,
-            paymentId: razorpayPaymentId || `pay_${Date.now()}`
-          }
-        }
+            paymentId: razorpayPaymentId || `pay_${Date.now()}`,
+          },
+        },
       });
     } catch (error) {
       console.error("Dev payment verification error:", error);

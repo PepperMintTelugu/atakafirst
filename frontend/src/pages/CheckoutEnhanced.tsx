@@ -474,7 +474,10 @@ export default function CheckoutEnhanced() {
           </div>
 
           {/* Progress Indicator */}
-          <div key="progress-indicator" className="mt-4 flex items-center space-x-4">
+          <div
+            key="progress-indicator"
+            className="mt-4 flex items-center space-x-4"
+          >
             <div key="step-1" className="flex items-center">
               <div
                 key="step-1-circle"
@@ -482,9 +485,15 @@ export default function CheckoutEnhanced() {
                   currentStep >= 1 ? "bg-green-500" : "bg-gray-300"
                 }`}
               >
-                {currentStep > 1 ? <CheckCircle key="check-icon" className="w-4 h-4" /> : "1"}
+                {currentStep > 1 ? (
+                  <CheckCircle key="check-icon" className="w-4 h-4" />
+                ) : (
+                  "1"
+                )}
               </div>
-              <span key="step-1-label" className="ml-2 text-sm font-medium">Shipping Address</span>
+              <span key="step-1-label" className="ml-2 text-sm font-medium">
+                Shipping Address
+              </span>
             </div>
             <div key="divider" className="flex-1 h-px bg-gray-300"></div>
             <div key="step-2" className="flex items-center">
@@ -496,7 +505,9 @@ export default function CheckoutEnhanced() {
               >
                 2
               </div>
-              <span key="step-2-label" className="ml-2 text-sm font-medium">Payment</span>
+              <span key="step-2-label" className="ml-2 text-sm font-medium">
+                Payment
+              </span>
             </div>
           </div>
         </div>
@@ -709,23 +720,33 @@ export default function CheckoutEnhanced() {
                               <SelectItem key="state-tn" value="tamil-nadu">
                                 Tamil Nadu
                               </SelectItem>
-                              <SelectItem key="state-kl" value="kerala">Kerala</SelectItem>
+                              <SelectItem key="state-kl" value="kerala">
+                                Kerala
+                              </SelectItem>
                               <SelectItem key="state-mh" value="maharashtra">
                                 Maharashtra
                               </SelectItem>
-                              <SelectItem key="state-dl" value="delhi">Delhi</SelectItem>
+                              <SelectItem key="state-dl" value="delhi">
+                                Delhi
+                              </SelectItem>
                               <SelectItem key="state-wb" value="west-bengal">
                                 West Bengal
                               </SelectItem>
-                              <SelectItem key="state-gj" value="gujarat">Gujarat</SelectItem>
+                              <SelectItem key="state-gj" value="gujarat">
+                                Gujarat
+                              </SelectItem>
                               <SelectItem key="state-rj" value="rajasthan">
                                 Rajasthan
                               </SelectItem>
                               <SelectItem key="state-up" value="uttar-pradesh">
                                 Uttar Pradesh
                               </SelectItem>
-                              <SelectItem key="state-br" value="bihar">Bihar</SelectItem>
-                              <SelectItem key="state-od" value="odisha">Odisha</SelectItem>
+                              <SelectItem key="state-br" value="bihar">
+                                Bihar
+                              </SelectItem>
+                              <SelectItem key="state-od" value="odisha">
+                                Odisha
+                              </SelectItem>
                               <SelectItem key="state-jh" value="jharkhand">
                                 Jharkhand
                               </SelectItem>
@@ -735,9 +756,16 @@ export default function CheckoutEnhanced() {
                               <SelectItem key="state-mp" value="madhya-pradesh">
                                 Madhya Pradesh
                               </SelectItem>
-                              <SelectItem key="state-hr" value="haryana">Haryana</SelectItem>
-                              <SelectItem key="state-pb" value="punjab">Punjab</SelectItem>
-                              <SelectItem key="state-hp" value="himachal-pradesh">
+                              <SelectItem key="state-hr" value="haryana">
+                                Haryana
+                              </SelectItem>
+                              <SelectItem key="state-pb" value="punjab">
+                                Punjab
+                              </SelectItem>
+                              <SelectItem
+                                key="state-hp"
+                                value="himachal-pradesh"
+                              >
                                 Himachal Pradesh
                               </SelectItem>
                               <SelectItem key="state-uk" value="uttarakhand">
@@ -746,8 +774,12 @@ export default function CheckoutEnhanced() {
                               <SelectItem key="state-jk" value="jammu-kashmir">
                                 Jammu & Kashmir
                               </SelectItem>
-                              <SelectItem key="state-as" value="assam">Assam</SelectItem>
-                              <SelectItem key="state-ga" value="goa">Goa</SelectItem>
+                              <SelectItem key="state-as" value="assam">
+                                Assam
+                              </SelectItem>
+                              <SelectItem key="state-ga" value="goa">
+                                Goa
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
@@ -948,7 +980,9 @@ export default function CheckoutEnhanced() {
                   onClick={handlePlaceOrder}
                   className="w-full h-12"
                   disabled={isProcessing}
-                  style={{ backgroundColor: settings?.theme?.primary || "#6366f1" }}
+                  style={{
+                    backgroundColor: settings?.theme?.primary || "#6366f1",
+                  }}
                 >
                   {isProcessing
                     ? "Processing..."

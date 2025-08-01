@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useReducer, useEffect, useMemo } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useMemo,
+} from "react";
 import { Book, CartItem, WishlistItem, User } from "@/types/book";
 import { apiClient } from "@/lib/api";
 
@@ -162,15 +168,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("ataka-wishlist", JSON.stringify(state.wishlist));
   }, [state.wishlist]);
 
-  const contextValue = useMemo(() => ({
-    state,
-    dispatch
-  }), [state]);
+  const contextValue = useMemo(
+    () => ({
+      state,
+      dispatch,
+    }),
+    [state],
+  );
 
   return (
-    <AppContext.Provider value={contextValue}>
-      {children}
-    </AppContext.Provider>
+    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
   );
 }
 
