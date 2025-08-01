@@ -327,9 +327,9 @@ export default function CheckoutEnhanced() {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID || "rzp_test_your_key_id",
         amount: orderData.amount,
         currency: "INR",
-        name: settings.brand.name,
+        name: settings?.brand?.name || "Ataka Bookstore",
         description: `Order for ${itemCount} book${itemCount > 1 ? "s" : ""}`,
-        image: settings.brand.logo,
+        image: settings?.brand?.logo || "",
         order_id: orderData.razorpayOrderId,
         prefill: {
           name: address.fullName,
