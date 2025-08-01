@@ -131,6 +131,14 @@ class ApiClient {
 
   // Orders API
   async getOrders() {
+    // In development, try the dev admin endpoint first (for admin access without auth)
+    if (import.meta.env.DEV) {
+      try {
+        return this.request<ApiResponse<any[]>>("/api/orders/dev/admin");
+      } catch (error) {
+        console.warn("Dev admin endpoint failed, falling back to regular endpoint:", error);
+      }
+    }
     return this.request<ApiResponse<any[]>>("/api/orders");
   }
 
