@@ -837,9 +837,9 @@ export default function CheckoutEnhanced() {
                       }`}
                       onClick={() => setPaymentMethod("razorpay")}
                     >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center">
+                      <div key="razorpay-content" className="flex items-center justify-between">
+                        <div key="razorpay-info" className="flex items-center space-x-3">
+                          <div key="razorpay-radio" className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center">
                             {paymentMethod === "razorpay" && (
                               <div className="w-2 h-2 rounded-full bg-blue-500"></div>
                             )}
