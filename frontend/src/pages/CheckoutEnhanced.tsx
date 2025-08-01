@@ -602,7 +602,7 @@ export default function CheckoutEnhanced() {
                             />
                           </div>
                         </div>
-                        <div>
+                        <div key="phone-field">
                           <Label htmlFor="phone">Phone Number *</Label>
                           <div className="relative">
                             <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
