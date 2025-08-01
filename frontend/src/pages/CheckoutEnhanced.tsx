@@ -337,7 +337,7 @@ export default function CheckoutEnhanced() {
           contact: address.phone,
         },
         theme: {
-          color: settings.theme.primary,
+          color: settings?.theme?.primary || "#6366f1",
         },
         handler: async (response: any) => {
           try {
