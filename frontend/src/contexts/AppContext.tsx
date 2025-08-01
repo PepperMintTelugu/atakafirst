@@ -195,27 +195,20 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 export function useApp() {
   const context = useContext(AppContext);
 
-  console.debug("useApp called - context:", context);
-  console.debug("AppContext ref:", AppContext);
-
   if (context === null || context === undefined) {
-    console.error("❌ AppContext is null/undefined");
+    console.error("❌ AppContext is null/undefined - providing fallback");
     console.error("Current context value:", context);
-    console.error("AppContext object:", AppContext);
     console.error("Make sure AppProvider is properly wrapping your component");
-    console.error("Component call stack:", new Error().stack);
 
-    // Check if we're in a React component tree
-    try {
-      console.error("React version:", React.version);
-    } catch (e) {
-      console.error("React not available:", e);
-    }
-
-    throw new Error("useApp must be used within an AppProvider. Context is " + context);
+    // Return a fallback context with default values to prevent crashes
+    return {
+      state: initialState,
+      dispatch: () => {
+        console.warn("Attempting to dispatch action with fallback context");
+      }
+    };
   }
 
-  console.debug("✅ AppContext found successfully");
   return context;
 }
 
