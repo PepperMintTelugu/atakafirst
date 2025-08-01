@@ -889,10 +889,10 @@ export default function CheckoutEnhanced() {
                   ))}
                 </div>
 
-                <Separator />
+                <Separator key="order-separator" />
 
                 {/* Pricing Details */}
-                <div className="space-y-2">
+                <div key="pricing-details-section" className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>Subtotal ({itemCount} items)</span>
                     <span>₹{totalAmount.toLocaleString()}</span>
