@@ -318,6 +318,10 @@ export default function CheckoutEnhanced() {
 
       const orderData = orderResponse.data;
 
+      // Debug the order data structure
+      console.log("Payment order response:", orderResponse);
+      console.log("Order data:", orderData);
+
       // Initialize Razorpay
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID || "rzp_test_your_key_id",
