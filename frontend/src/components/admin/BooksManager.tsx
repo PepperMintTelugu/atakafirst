@@ -220,7 +220,7 @@ const mockBooks: Book[] = [
     description:
       "A satirical novel that humorously depicts the conflicts between traditional and modern values in Indian society.",
     descriptionTelugu:
-      "భారతీయ సమాజంలో సంప్రదాయ మరియు ఆధునిక విలువల ��ధ్య వైరుధ్యాలను హాస్యభరితంగా చిత్రీకరించిన వ్య��గ్య నవల.",
+      "భారతీయ సమాజంలో సంప్రదాయ మరియు ఆధునిక విలువల ��ధ్య వైరుధ్యాలను హాస్యభర���తంగా చిత్రీకరించిన వ్య��గ్య నవల.",
     coverImage:
       "https://via.placeholder.com/400x600/f59e0b/white?text=బా��ిస్టర్+పార్వతీశం",
     images: [
@@ -980,8 +980,8 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredBooks.map((book) => (
-                    <tr key={book.id} className="border-b hover:bg-gray-50/50">
+                  {filteredBooks.map((book, index) => (
+                    <tr key={`book-row-${book.id}-${index}`} className="border-b hover:bg-gray-50/50">
                       <td className="p-4">
                         <div className="flex items-center space-x-3">
                           <img
