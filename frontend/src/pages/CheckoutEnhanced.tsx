@@ -500,7 +500,7 @@ export default function CheckoutEnhanced() {
           <div className="lg:col-span-2 space-y-6">
             {/* Step 1: Shipping Address */}
             {currentStep === 1 && (
-              <Card>
+              <Card key="shipping-address-card">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
                     <div className="flex items-center">
