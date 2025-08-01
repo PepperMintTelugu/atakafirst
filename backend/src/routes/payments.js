@@ -466,6 +466,34 @@ if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
       });
     }
   });
+
+  // Development payment verification endpoint
+  router.post("/dev/verify-payment", async (req, res) => {
+    try {
+      const { razorpayOrderId, razorpayPaymentId, razorpaySignature, orderId } = req.body;
+
+      // Mock verification for development
+      return res.json({
+        success: true,
+        data: {
+          verified: true,
+          order: {
+            id: orderId || `order_${Date.now()}`,
+            status: "paid",
+            amount: 100,
+            paymentId: razorpayPaymentId || `pay_${Date.now()}`
+          }
+        }
+      });
+    } catch (error) {
+      console.error("Dev payment verification error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Server error",
+        error: error.message,
+      });
+    }
+  });
 }
 
 export default router;
