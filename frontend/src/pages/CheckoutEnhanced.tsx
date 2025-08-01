@@ -539,7 +539,7 @@ export default function CheckoutEnhanced() {
                 <CardContent className="space-y-4">
                   {/* Saved Addresses */}
                   {savedAddresses.length > 0 && (
-                    <div className="space-y-3">
+                    <div key="saved-addresses-section" className="space-y-3">
                       <Label>Saved Addresses</Label>
                       <div className="grid grid-cols-1 gap-3">
                         {savedAddresses.map((savedAddr, index) => (
