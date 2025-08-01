@@ -842,13 +842,13 @@ export default function CheckoutEnhanced() {
                   </div>
 
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <div className="flex items-center space-x-2 text-blue-600">
+                    <div key="secure-header" className="flex items-center space-x-2 text-blue-600">
                       <Lock className="w-4 h-4" />
                       <span className="text-sm font-medium">
                         Secure Payment
                       </span>
                     </div>
-                    <p className="text-sm text-blue-600 mt-1">
+                    <p key="secure-text" className="text-sm text-blue-600 mt-1">
                       Your payment information is encrypted and secured by
                       Razorpay.
                     </p>
