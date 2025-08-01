@@ -859,7 +859,7 @@ export default function CheckoutEnhanced() {
           </div>
 
           {/* Order Summary */}
-          <div className="lg:col-span-1">
+          <div key="order-summary" className="lg:col-span-1">
             <Card key="order-summary-card" className="sticky top-24">
               <CardHeader>
                 <CardTitle>Order Summary</CardTitle>
