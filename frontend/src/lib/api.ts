@@ -1,6 +1,20 @@
 // API client for backend communication
-export const API_BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:5000";
+// In cloud environment, use relative URL; in local development, use localhost
+const getApiBaseUrl = () => {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+
+  // If running in cloud environment (detected by hostname), use relative URL
+  if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
+    return ''; // Use relative URL for cloud deployment
+  }
+
+  // Default to localhost for local development
+  return "http://localhost:5000";
+};
+
+export const API_BASE_URL = getApiBaseUrl();
 
 interface ApiResponse<T> {
   success: boolean;
