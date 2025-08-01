@@ -560,7 +560,7 @@ export default function CheckoutEnhanced() {
                   {savedAddresses.length > 0 && (
                     <div key="saved-addresses-section" className="space-y-3">
                       <Label>Saved Addresses</Label>
-                      <div className="grid grid-cols-1 gap-3">
+                      <div key="saved-addresses-grid" className="grid grid-cols-1 gap-3">
                         {savedAddresses.map((savedAddr, index) => (
                           <div
                             key={index}
@@ -571,8 +571,8 @@ export default function CheckoutEnhanced() {
                             }`}
                             onClick={() => selectSavedAddress(index)}
                           >
-                            <div className="flex items-start justify-between">
-                              <div className="flex-1">
+                            <div key={`address-content-${index}`} className="flex items-start justify-between">
+                              <div key={`address-info-${index}`} className="flex-1">
                                 <p className="font-medium">
                                   {savedAddr.fullName}
                                 </p>
@@ -587,9 +587,9 @@ export default function CheckoutEnhanced() {
                                   {savedAddr.phone}
                                 </p>
                               </div>
-                              <div className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center">
+                              <div key={`address-radio-${index}`} className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center">
                                 {selectedAddressIndex === index && (
-                                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                                  <div key={`address-dot-${index}`} className="w-2 h-2 rounded-full bg-blue-500"></div>
                                 )}
                               </div>
                             </div>
@@ -597,7 +597,7 @@ export default function CheckoutEnhanced() {
                         ))}
                       </div>
                       {!isAddingNewAddress && (
-                        <div className="border-t pt-4"></div>
+                        <div key="address-separator" className="border-t pt-4"></div>
                       )}
                     </div>
                   )}
