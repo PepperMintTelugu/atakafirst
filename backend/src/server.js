@@ -93,10 +93,18 @@ app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (mobile apps, Postman, etc.)
     if (!origin) return callback(null, true);
-    
+
+    // In development, allow all origins for debugging
+    if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
+      console.log('CORS: Allowing origin in development:', origin);
+      return callback(null, true);
+    }
+
     if (allowedOrigins.indexOf(origin) !== -1 || origin.includes('.vercel.app')) {
       callback(null, true);
     } else {
+      console.log('CORS: Origin not allowed:', origin);
+      console.log('Allowed origins:', allowedOrigins);
       callback(new Error('Not allowed by CORS'));
     }
   },
