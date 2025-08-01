@@ -423,6 +423,25 @@ router.put(
 // @access  Public
 router.get("/signin-settings", async (req, res) => {
   try {
+    // Check if MongoDB is connected
+    const mongoose = await import("mongoose");
+    if (mongoose.default.connection.readyState !== 1) {
+      // Return default settings if MongoDB is not connected
+      return res.json({
+        success: true,
+        settings: {
+          enableGoogle: true,
+          enableWhatsAppOTP: true,
+          enableMobileOTP: true,
+          enableEmailPassword: true,
+          primaryMethod: "google",
+          whatsappNumber: "+91 98765 43210",
+          otpLength: 6,
+          otpValidityMinutes: 5,
+        },
+      });
+    }
+
     const settings = await Settings.getSettings();
 
     res.json({
