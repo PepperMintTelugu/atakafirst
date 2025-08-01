@@ -316,6 +316,7 @@ export default function ShippingManager() {
     null,
   );
   const [showSettings, setShowSettings] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
   const { toast } = useToast();
 
   // Load shipments on component mount
