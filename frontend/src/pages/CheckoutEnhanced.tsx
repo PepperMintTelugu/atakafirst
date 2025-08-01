@@ -881,7 +881,7 @@ export default function CheckoutEnhanced() {
                     </div>
                   </div>
 
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div key="secure-payment-info" className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                     <div
                       key="secure-header"
                       className="flex items-center space-x-2 text-blue-600"
