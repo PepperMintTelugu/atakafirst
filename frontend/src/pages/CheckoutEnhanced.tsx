@@ -916,11 +916,11 @@ export default function CheckoutEnhanced() {
 
                 {shippingCost === 0 && (
                   <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                    <div className="flex items-center space-x-2 text-green-600">
+                    <div key="free-delivery-header" className="flex items-center space-x-2 text-green-600">
                       <Truck className="w-4 h-4" />
                       <span className="text-sm font-medium">FREE DELIVERY</span>
                     </div>
-                    <p className="text-sm text-green-600">
+                    <p key="free-delivery-text" className="text-sm text-green-600">
                       Your order qualifies for free shipping!
                     </p>
                   </div>
