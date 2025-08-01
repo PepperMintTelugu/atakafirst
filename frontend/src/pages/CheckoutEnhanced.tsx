@@ -797,7 +797,7 @@ export default function CheckoutEnhanced() {
                         </div>
                       </div>
 
-                      <div className="flex items-center space-x-3 pt-4 border-t">
+                      <div key="save-address-container" className="flex items-center space-x-3 pt-4 border-t">
                         <Button
                           key="save-button"
                           variant="outline"
