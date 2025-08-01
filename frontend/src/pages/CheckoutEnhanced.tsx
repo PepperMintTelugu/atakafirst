@@ -917,7 +917,7 @@ export default function CheckoutEnhanced() {
                         alt={item.title}
                         className="w-12 h-16 object-cover rounded"
                       />
-                      <div className="flex-1 min-w-0">
+                      <div key="item-details" className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 truncate">
                           {item.title}
                         </p>
@@ -936,11 +936,11 @@ export default function CheckoutEnhanced() {
 
                 {/* Pricing Details */}
                 <div key="pricing-details-section" className="space-y-2">
-                  <div className="flex justify-between text-sm">
+                  <div key="subtotal-row" className="flex justify-between text-sm">
                     <span>Subtotal ({itemCount} items)</span>
                     <span>₹{totalAmount.toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between text-sm">
+                  <div key="shipping-row" className="flex justify-between text-sm">
                     <span>Shipping</span>
                     <span>
                       {shippingCost === 0 ? (
@@ -951,7 +951,7 @@ export default function CheckoutEnhanced() {
                     </span>
                   </div>
                   <Separator />
-                  <div className="flex justify-between font-medium text-lg">
+                  <div key="total-row" className="flex justify-between font-medium text-lg">
                     <span>Total</span>
                     <span>₹{finalAmount.toLocaleString()}</span>
                   </div>
