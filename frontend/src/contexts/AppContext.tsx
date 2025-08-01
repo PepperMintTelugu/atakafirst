@@ -169,12 +169,23 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   }, [state.wishlist]);
 
   const contextValue = useMemo(
-    () => ({
-      state,
-      dispatch,
-    }),
+    () => {
+      const value = {
+        state,
+        dispatch,
+      };
+      console.debug("AppContext value created:", value);
+      return value;
+    },
     [state],
   );
+
+  console.debug("AppProvider rendering with context value:", contextValue);
+
+  if (!contextValue) {
+    console.error("AppContext value is null!");
+    return null;
+  }
 
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
