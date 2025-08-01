@@ -509,6 +509,7 @@ export default function CheckoutEnhanced() {
                     </div>
                     <div className="flex items-center space-x-2">
                       <Button
+                        key="gps-button"
                         variant="outline"
                         size="sm"
                         onClick={getCurrentLocationAddress}
@@ -523,6 +524,7 @@ export default function CheckoutEnhanced() {
                       </Button>
                       {!isAddingNewAddress && (
                         <Button
+                          key="new-address-button"
                           variant="outline"
                           size="sm"
                           onClick={addNewAddress}
