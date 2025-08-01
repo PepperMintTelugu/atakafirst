@@ -93,9 +93,9 @@ router.get("/", protect, async (req, res) => {
             page: 1,
             limit: 10,
             total: 0,
-            pages: 1
-          }
-        }
+            pages: 1,
+          },
+        },
       });
     }
 
@@ -358,13 +358,13 @@ router.get("/admin/all", protect, admin, async (req, res) => {
           totalPages: 1,
           totalOrders: 0,
           hasNextPage: false,
-          hasPrevPage: false
+          hasPrevPage: false,
         },
         stats: {
           totalOrders: 0,
           totalRevenue: 0,
-          statusCounts: {}
-        }
+          statusCounts: {},
+        },
       });
     }
 
@@ -453,7 +453,7 @@ function calculateDeliveryEstimate(pincode, orderDate) {
 // @desc    Get all orders for admin (development only)
 // @route   GET /api/orders/dev/admin
 // @access  Public (development only)
-if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
+if (process.env.NODE_ENV === "development" || !process.env.NODE_ENV) {
   router.get("/dev/admin", async (req, res) => {
     try {
       // Check if MongoDB is connected
@@ -469,13 +469,13 @@ if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
             totalPages: 1,
             totalOrders: 0,
             hasNextPage: false,
-            hasPrevPage: false
+            hasPrevPage: false,
           },
           stats: {
             totalOrders: 0,
             totalRevenue: 0,
-            statusCounts: {}
-          }
+            statusCounts: {},
+          },
         });
       }
 
@@ -506,8 +506,8 @@ if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
           totalPages: Math.ceil(total / limit),
           totalOrders: total,
           hasNextPage: page * limit < total,
-          hasPrevPage: page > 1
-        }
+          hasPrevPage: page > 1,
+        },
       });
     } catch (error) {
       console.error("Dev admin orders error:", error);

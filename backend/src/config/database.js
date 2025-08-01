@@ -36,7 +36,7 @@ const connectDB = async () => {
     console.error("❌ Error connecting to MongoDB:", error.message);
 
     // In development, don't exit - allow app to run with mock data
-    if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
+    if (process.env.NODE_ENV === "development" || !process.env.NODE_ENV) {
       console.log("⚠️  Running in development mode without MongoDB");
       console.log("📦 Using mock data for API responses");
       return;

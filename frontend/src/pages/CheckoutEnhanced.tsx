@@ -464,7 +464,9 @@ export default function CheckoutEnhanced() {
               Back to Cart
             </Link>
             <div key="separator" className="h-6 w-px bg-gray-300"></div>
-            <h1 key="title" className="text-2xl font-bold text-gray-900">Checkout</h1>
+            <h1 key="title" className="text-2xl font-bold text-gray-900">
+              Checkout
+            </h1>
           </div>
 
           {/* Progress Indicator */}
@@ -842,7 +844,10 @@ export default function CheckoutEnhanced() {
                   </div>
 
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <div key="secure-header" className="flex items-center space-x-2 text-blue-600">
+                    <div
+                      key="secure-header"
+                      className="flex items-center space-x-2 text-blue-600"
+                    >
                       <Lock className="w-4 h-4" />
                       <span className="text-sm font-medium">
                         Secure Payment
@@ -916,11 +921,17 @@ export default function CheckoutEnhanced() {
 
                 {shippingCost === 0 && (
                   <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                    <div key="free-delivery-header" className="flex items-center space-x-2 text-green-600">
+                    <div
+                      key="free-delivery-header"
+                      className="flex items-center space-x-2 text-green-600"
+                    >
                       <Truck className="w-4 h-4" />
                       <span className="text-sm font-medium">FREE DELIVERY</span>
                     </div>
-                    <p key="free-delivery-text" className="text-sm text-green-600">
+                    <p
+                      key="free-delivery-text"
+                      className="text-sm text-green-600"
+                    >
                       Your order qualifies for free shipping!
                     </p>
                   </div>
@@ -940,7 +951,10 @@ export default function CheckoutEnhanced() {
                       : `Pay ₹${finalAmount.toLocaleString()}`}
                 </Button>
 
-                <div key="terms-section" className="text-center text-xs text-gray-500">
+                <div
+                  key="terms-section"
+                  className="text-center text-xs text-gray-500"
+                >
                   <p>
                     By placing your order, you agree to our{" "}
                     <Link to="/terms" className="underline">

@@ -305,7 +305,7 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
         });
       }
     } catch (error) {
-      console.error('Failed to load books:', error);
+      console.error("Failed to load books:", error);
       // Fallback to mock data
       setBooks(mockBooks);
       toast({
@@ -436,10 +436,10 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
           description: "Book added successfully!",
         });
       } else {
-        throw new Error(response.message || 'Failed to add book');
+        throw new Error(response.message || "Failed to add book");
       }
     } catch (error: any) {
-      console.error('Failed to add book:', error);
+      console.error("Failed to add book:", error);
       // Fallback to local state update
       const book: Book = {
         ...newBook,
@@ -495,17 +495,19 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
 
       if (response.success && response.data) {
         setBooks(
-          books.map((book) => (book.id === editingBook.id ? response.data : book)),
+          books.map((book) =>
+            book.id === editingBook.id ? response.data : book,
+          ),
         );
         toast({
           title: "Success",
           description: "Book updated successfully!",
         });
       } else {
-        throw new Error(response.message || 'Failed to update book');
+        throw new Error(response.message || "Failed to update book");
       }
     } catch (error: any) {
-      console.error('Failed to update book:', error);
+      console.error("Failed to update book:", error);
       // Fallback to local state update
       setBooks(
         books.map((book) => (book.id === editingBook.id ? editingBook : book)),
@@ -531,10 +533,10 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
           description: "Book deleted successfully!",
         });
       } else {
-        throw new Error(response.message || 'Failed to delete book');
+        throw new Error(response.message || "Failed to delete book");
       }
     } catch (error: any) {
-      console.error('Failed to delete book:', error);
+      console.error("Failed to delete book:", error);
       // Fallback to local state update
       setBooks(books.filter((book) => book.id !== id));
       toast({
@@ -981,7 +983,10 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
                 </thead>
                 <tbody>
                   {filteredBooks.map((book, index) => (
-                    <tr key={`book-row-${book.id}-${index}`} className="border-b hover:bg-gray-50/50">
+                    <tr
+                      key={`book-row-${book.id}-${index}`}
+                      className="border-b hover:bg-gray-50/50"
+                    >
                       <td className="p-4">
                         <div className="flex items-center space-x-3">
                           <img

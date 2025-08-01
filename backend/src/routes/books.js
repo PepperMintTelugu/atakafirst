@@ -74,16 +74,16 @@ router.get(
               images: ["https://via.placeholder.com/300x400"],
               rating: 4.5,
               reviewsCount: 25,
-              salesCount: 100
-            }
+              salesCount: 100,
+            },
           ],
           pagination: {
             currentPage: 1,
             totalPages: 1,
             totalBooks: 1,
             hasNextPage: false,
-            hasPrevPage: false
-          }
+            hasPrevPage: false,
+          },
         });
       }
 
