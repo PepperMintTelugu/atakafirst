@@ -179,6 +179,7 @@ export function useApp() {
   if (!context) {
     console.error("AppContext is null. Current context:", context);
     console.error("Make sure AppProvider is properly wrapping your component");
+    console.error("Component stack:", new Error().stack);
     throw new Error("useApp must be used within an AppProvider");
   }
   return context;
