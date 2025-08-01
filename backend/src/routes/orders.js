@@ -80,6 +80,25 @@ router.get("/:orderId", protect, async (req, res) => {
 // @access  Private
 router.get("/", protect, async (req, res) => {
   try {
+    // Check if MongoDB is connected
+    const mongoose = await import("mongoose");
+    if (mongoose.default.connection.readyState !== 1) {
+      // Return mock data if MongoDB is not connected
+      return res.json({
+        success: true,
+        message: "Using mock data (MongoDB not connected)",
+        data: {
+          orders: [],
+          pagination: {
+            page: 1,
+            limit: 10,
+            total: 0,
+            pages: 1
+          }
+        }
+      });
+    }
+
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const skip = (page - 1) * limit;
