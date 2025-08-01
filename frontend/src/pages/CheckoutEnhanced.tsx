@@ -743,7 +743,7 @@ export default function CheckoutEnhanced() {
                             </SelectContent>
                           </Select>
                         </div>
-                        <div>
+                        <div key="pincode-field">
                           <Label htmlFor="pincode">Pincode *</Label>
                           <Input
                             id="pincode"
