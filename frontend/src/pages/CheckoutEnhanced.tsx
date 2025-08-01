@@ -818,6 +818,7 @@ export default function CheckoutEnhanced() {
                     </div>
 
                     <div
+                      key="cod-option"
                       className={`border rounded-lg p-4 cursor-pointer transition-colors opacity-50 ${
                         paymentMethod === "cod"
                           ? "border-gray-500 bg-gray-50"
