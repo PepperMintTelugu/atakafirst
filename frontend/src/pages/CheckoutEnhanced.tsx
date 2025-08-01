@@ -637,7 +637,7 @@ export default function CheckoutEnhanced() {
                         </div>
                       </div>
 
-                      <div>
+                      <div key="street-field">
                         <Label htmlFor="street">Street Address *</Label>
                         <div className="relative">
                           <Home className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
