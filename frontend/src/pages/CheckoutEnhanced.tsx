@@ -585,7 +585,7 @@ export default function CheckoutEnhanced() {
 
                   {/* Address Form */}
                   {isAddingNewAddress && (
-                    <div className="space-y-4">
+                    <div key="address-form-section" className="space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div key="fullname-field">
                           <Label htmlFor="fullName">Full Name *</Label>
