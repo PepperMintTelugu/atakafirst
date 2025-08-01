@@ -860,7 +860,7 @@ export default function CheckoutEnhanced() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <Card className="sticky top-24">
+            <Card key="order-summary-card" className="sticky top-24">
               <CardHeader>
                 <CardTitle>Order Summary</CardTitle>
               </CardHeader>
