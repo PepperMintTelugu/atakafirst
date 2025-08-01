@@ -326,6 +326,29 @@ router.get("/:orderId/invoice", protect, async (req, res) => {
 // @access  Admin
 router.get("/admin/all", protect, admin, async (req, res) => {
   try {
+    // Check if MongoDB is connected
+    const mongoose = await import("mongoose");
+    if (mongoose.default.connection.readyState !== 1) {
+      // Return mock data if MongoDB is not connected
+      return res.json({
+        success: true,
+        message: "Using mock data (MongoDB not connected)",
+        data: [],
+        pagination: {
+          currentPage: 1,
+          totalPages: 1,
+          totalOrders: 0,
+          hasNextPage: false,
+          hasPrevPage: false
+        },
+        stats: {
+          totalOrders: 0,
+          totalRevenue: 0,
+          statusCounts: {}
+        }
+      });
+    }
+
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 20;
     const skip = (page - 1) * limit;
