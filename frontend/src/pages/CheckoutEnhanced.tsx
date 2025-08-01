@@ -452,8 +452,8 @@ export default function CheckoutEnhanced() {
   return (
     <div key="checkout-enhanced-wrapper" className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b">
-        <div className="container mx-auto px-4 py-4">
+      <div key="checkout-header" className="bg-white border-b">
+        <div key="header-container" className="container mx-auto px-4 py-4">
           <div className="flex items-center space-x-4">
             <Link
               key="back-link"
