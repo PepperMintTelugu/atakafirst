@@ -162,10 +162,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("ataka-wishlist", JSON.stringify(state.wishlist));
   }, [state.wishlist]);
 
-  const contextValue = React.useMemo(() => ({
+  const contextValue = useMemo(() => ({
     state,
     dispatch
-  }), [state, dispatch]);
+  }), [state]);
 
   return (
     <AppContext.Provider value={contextValue}>
