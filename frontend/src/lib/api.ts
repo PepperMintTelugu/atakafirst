@@ -222,6 +222,25 @@ class ApiClient {
     shippingAddress: any;
     notes?: any;
   }) {
+    // In development, try the dev endpoint first (for payment without auth)
+    if (import.meta.env.DEV) {
+      try {
+        return this.request<
+          ApiResponse<{
+            orderId: string;
+            razorpayOrderId: string;
+            amount: number;
+            currency: string;
+          }>
+        >("/api/payments/dev/create-order", {
+          method: "POST",
+          body: JSON.stringify(orderData),
+        });
+      } catch (error) {
+        console.warn("Dev payment endpoint failed, falling back to regular endpoint:", error);
+      }
+    }
+
     return this.request<
       ApiResponse<{
         orderId: string;
