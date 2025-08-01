@@ -130,7 +130,7 @@ function appReducer(state: AppState, action: AppAction): AppState {
 // Create context with a default value to prevent null issues
 const defaultContextValue = {
   state: initialState,
-  dispatch: (() => {}) as React.Dispatch<AppAction>
+  dispatch: (() => {}) as React.Dispatch<AppAction>,
 };
 
 const AppContext = createContext<{

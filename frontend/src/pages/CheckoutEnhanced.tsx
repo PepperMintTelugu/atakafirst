@@ -514,7 +514,10 @@ export default function CheckoutEnhanced() {
       </div>
 
       <div key="checkout-content" className="container mx-auto px-4 py-8">
-        <div key="checkout-grid" className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div
+          key="checkout-grid"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+        >
           {/* Main Content */}
           <div key="main-content" className="lg:col-span-2 space-y-6">
             {/* Step 1: Shipping Address */}
@@ -526,7 +529,10 @@ export default function CheckoutEnhanced() {
                       <MapPin className="w-5 h-5 mr-2" />
                       Shipping Address
                     </div>
-                    <div key="title-actions" className="flex items-center space-x-2">
+                    <div
+                      key="title-actions"
+                      className="flex items-center space-x-2"
+                    >
                       <Button
                         key="gps-button"
                         variant="outline"
@@ -560,7 +566,10 @@ export default function CheckoutEnhanced() {
                   {savedAddresses.length > 0 && (
                     <div key="saved-addresses-section" className="space-y-3">
                       <Label>Saved Addresses</Label>
-                      <div key="saved-addresses-grid" className="grid grid-cols-1 gap-3">
+                      <div
+                        key="saved-addresses-grid"
+                        className="grid grid-cols-1 gap-3"
+                      >
                         {savedAddresses.map((savedAddr, index) => (
                           <div
                             key={index}
@@ -571,8 +580,14 @@ export default function CheckoutEnhanced() {
                             }`}
                             onClick={() => selectSavedAddress(index)}
                           >
-                            <div key={`address-content-${index}`} className="flex items-start justify-between">
-                              <div key={`address-info-${index}`} className="flex-1">
+                            <div
+                              key={`address-content-${index}`}
+                              className="flex items-start justify-between"
+                            >
+                              <div
+                                key={`address-info-${index}`}
+                                className="flex-1"
+                              >
                                 <p className="font-medium">
                                   {savedAddr.fullName}
                                 </p>
@@ -587,9 +602,15 @@ export default function CheckoutEnhanced() {
                                   {savedAddr.phone}
                                 </p>
                               </div>
-                              <div key={`address-radio-${index}`} className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center">
+                              <div
+                                key={`address-radio-${index}`}
+                                className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center"
+                              >
                                 {selectedAddressIndex === index && (
-                                  <div key={`address-dot-${index}`} className="w-2 h-2 rounded-full bg-blue-500"></div>
+                                  <div
+                                    key={`address-dot-${index}`}
+                                    className="w-2 h-2 rounded-full bg-blue-500"
+                                  ></div>
                                 )}
                               </div>
                             </div>
@@ -597,7 +618,10 @@ export default function CheckoutEnhanced() {
                         ))}
                       </div>
                       {!isAddingNewAddress && (
-                        <div key="address-separator" className="border-t pt-4"></div>
+                        <div
+                          key="address-separator"
+                          className="border-t pt-4"
+                        ></div>
                       )}
                     </div>
                   )}
@@ -605,7 +629,10 @@ export default function CheckoutEnhanced() {
                   {/* Address Form */}
                   {isAddingNewAddress && (
                     <div key="address-form-section" className="space-y-4">
-                      <div key="name-phone-grid" className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div
+                        key="name-phone-grid"
+                        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                      >
                         <div key="fullname-field">
                           <Label htmlFor="fullName">Full Name *</Label>
                           <div className="relative">
@@ -684,7 +711,10 @@ export default function CheckoutEnhanced() {
                         />
                       </div>
 
-                      <div key="address-fields-grid" className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div
+                        key="address-fields-grid"
+                        className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                      >
                         <div key="city-field">
                           <Label htmlFor="city">City *</Label>
                           <Input
@@ -797,7 +827,10 @@ export default function CheckoutEnhanced() {
                         </div>
                       </div>
 
-                      <div key="save-address-container" className="flex items-center space-x-3 pt-4 border-t">
+                      <div
+                        key="save-address-container"
+                        className="flex items-center space-x-3 pt-4 border-t"
+                      >
                         <Button
                           key="save-button"
                           variant="outline"
@@ -837,11 +870,23 @@ export default function CheckoutEnhanced() {
                       }`}
                       onClick={() => setPaymentMethod("razorpay")}
                     >
-                      <div key="razorpay-content" className="flex items-center justify-between">
-                        <div key="razorpay-info" className="flex items-center space-x-3">
-                          <div key="razorpay-radio" className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center">
+                      <div
+                        key="razorpay-content"
+                        className="flex items-center justify-between"
+                      >
+                        <div
+                          key="razorpay-info"
+                          className="flex items-center space-x-3"
+                        >
+                          <div
+                            key="razorpay-radio"
+                            className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center"
+                          >
                             {paymentMethod === "razorpay" && (
-                              <div key="razorpay-dot" className="w-2 h-2 rounded-full bg-blue-500"></div>
+                              <div
+                                key="razorpay-dot"
+                                className="w-2 h-2 rounded-full bg-blue-500"
+                              ></div>
                             )}
                           </div>
                           <div key="razorpay-text">
@@ -865,9 +910,18 @@ export default function CheckoutEnhanced() {
                           : "border-gray-200"
                       }`}
                     >
-                      <div key="cod-content" className="flex items-center justify-between">
-                        <div key="cod-info" className="flex items-center space-x-3">
-                          <div key="cod-radio" className="w-4 h-4 rounded-full border-2 border-gray-400"></div>
+                      <div
+                        key="cod-content"
+                        className="flex items-center justify-between"
+                      >
+                        <div
+                          key="cod-info"
+                          className="flex items-center space-x-3"
+                        >
+                          <div
+                            key="cod-radio"
+                            className="w-4 h-4 rounded-full border-2 border-gray-400"
+                          ></div>
                           <div key="cod-text">
                             <h3 className="font-medium text-gray-500">
                               Cash on Delivery
@@ -881,7 +935,10 @@ export default function CheckoutEnhanced() {
                     </div>
                   </div>
 
-                  <div key="secure-payment-info" className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div
+                    key="secure-payment-info"
+                    className="bg-blue-50 border border-blue-200 rounded-lg p-4"
+                  >
                     <div
                       key="secure-header"
                       className="flex items-center space-x-2 text-blue-600"
@@ -936,11 +993,17 @@ export default function CheckoutEnhanced() {
 
                 {/* Pricing Details */}
                 <div key="pricing-details-section" className="space-y-2">
-                  <div key="subtotal-row" className="flex justify-between text-sm">
+                  <div
+                    key="subtotal-row"
+                    className="flex justify-between text-sm"
+                  >
                     <span>Subtotal ({itemCount} items)</span>
                     <span>₹{totalAmount.toLocaleString()}</span>
                   </div>
-                  <div key="shipping-row" className="flex justify-between text-sm">
+                  <div
+                    key="shipping-row"
+                    className="flex justify-between text-sm"
+                  >
                     <span>Shipping</span>
                     <span>
                       {shippingCost === 0 ? (
@@ -951,14 +1014,20 @@ export default function CheckoutEnhanced() {
                     </span>
                   </div>
                   <Separator />
-                  <div key="total-row" className="flex justify-between font-medium text-lg">
+                  <div
+                    key="total-row"
+                    className="flex justify-between font-medium text-lg"
+                  >
                     <span>Total</span>
                     <span>₹{finalAmount.toLocaleString()}</span>
                   </div>
                 </div>
 
                 {shippingCost === 0 && (
-                  <div key="free-delivery-banner" className="bg-green-50 border border-green-200 rounded-lg p-3">
+                  <div
+                    key="free-delivery-banner"
+                    className="bg-green-50 border border-green-200 rounded-lg p-3"
+                  >
                     <div
                       key="free-delivery-header"
                       className="flex items-center space-x-2 text-green-600"
