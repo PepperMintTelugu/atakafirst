@@ -127,10 +127,16 @@ function appReducer(state: AppState, action: AppAction): AppState {
   }
 }
 
+// Create context with a default value to prevent null issues
+const defaultContextValue = {
+  state: initialState,
+  dispatch: (() => {}) as React.Dispatch<AppAction>
+};
+
 const AppContext = createContext<{
   state: AppState;
   dispatch: React.Dispatch<AppAction>;
-} | null>(null);
+}>(defaultContextValue);
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(appReducer, initialState);
