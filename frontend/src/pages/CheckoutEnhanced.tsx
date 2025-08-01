@@ -468,7 +468,7 @@ export default function CheckoutEnhanced() {
 
           {/* Progress Indicator */}
           <div className="mt-4 flex items-center space-x-4">
-            <div className="flex items-center">
+            <div key="step-1" className="flex items-center">
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-medium ${
                   currentStep >= 1 ? "bg-green-500" : "bg-gray-300"
@@ -478,8 +478,8 @@ export default function CheckoutEnhanced() {
               </div>
               <span className="ml-2 text-sm font-medium">Shipping Address</span>
             </div>
-            <div className="flex-1 h-px bg-gray-300"></div>
-            <div className="flex items-center">
+            <div key="divider" className="flex-1 h-px bg-gray-300"></div>
+            <div key="step-2" className="flex items-center">
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-medium ${
                   currentStep >= 2 ? "bg-blue-500" : "bg-gray-300"
