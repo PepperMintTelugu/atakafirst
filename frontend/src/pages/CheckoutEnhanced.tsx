@@ -789,6 +789,7 @@ export default function CheckoutEnhanced() {
                 <CardContent className="space-y-4">
                   <div className="space-y-3">
                     <div
+                      key="razorpay-option"
                       className={`border rounded-lg p-4 cursor-pointer transition-colors ${
                         paymentMethod === "razorpay"
                           ? "border-blue-500 bg-blue-50"
