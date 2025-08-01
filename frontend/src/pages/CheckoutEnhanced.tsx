@@ -841,10 +841,10 @@ export default function CheckoutEnhanced() {
                         <div key="razorpay-info" className="flex items-center space-x-3">
                           <div key="razorpay-radio" className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center">
                             {paymentMethod === "razorpay" && (
-                              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                              <div key="razorpay-dot" className="w-2 h-2 rounded-full bg-blue-500"></div>
                             )}
                           </div>
-                          <div>
+                          <div key="razorpay-text">
                             <h3 className="font-medium">
                               Razorpay (Recommended)
                             </h3>
