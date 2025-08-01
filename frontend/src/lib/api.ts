@@ -260,6 +260,23 @@ class ApiClient {
     razorpaySignature: string;
     orderId: string;
   }) {
+    // In development, try the dev endpoint first
+    if (import.meta.env.DEV) {
+      try {
+        return this.request<
+          ApiResponse<{
+            verified: boolean;
+            order: any;
+          }>
+        >("/api/payments/dev/verify-payment", {
+          method: "POST",
+          body: JSON.stringify(paymentData),
+        });
+      } catch (error) {
+        console.warn("Dev payment verification failed, falling back to regular endpoint:", error);
+      }
+    }
+
     return this.request<
       ApiResponse<{
         verified: boolean;
