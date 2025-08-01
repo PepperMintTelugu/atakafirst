@@ -185,7 +185,7 @@ const mockBooks: Book[] = [
     description:
       "Revolutionary poetry collection that changed the landscape of Telugu literature with its progressive themes.",
     descriptionTelugu:
-      "ప్రగతిశీల భావాలతో తెలుగు సా��ిత్య క్షేత్రంలో విప్లవం తెచ్చిన కవిత్వ సంకలనం.",
+      "ప్రగతిశీల భావాలతో తెలుగు సా��ిత్య క్షేత్రంలో విప్లవం తెచ్చిన ���విత్వ సంకలనం.",
     coverImage:
       "https://via.placeholder.com/400x600/ec4899/white?text=మహాప్రస్థానం",
     images: [
@@ -1064,6 +1064,7 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
                       <td className="p-4">
                         <div className="flex items-center space-x-2">
                           <Button
+                            key={`edit-${book.id}`}
                             variant="ghost"
                             size="sm"
                             onClick={() => setEditingBook(book)}
@@ -1071,6 +1072,7 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
                             <Edit3 className="w-4 h-4" />
                           </Button>
                           <Button
+                            key={`featured-${book.id}`}
                             variant="ghost"
                             size="sm"
                             onClick={() => toggleFeatured(book.id)}
@@ -1083,6 +1085,7 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
                             <Star className="w-4 h-4" />
                           </Button>
                           <Button
+                            key={`delete-${book.id}`}
                             variant="ghost"
                             size="sm"
                             onClick={() => handleDeleteBook(book.id)}
