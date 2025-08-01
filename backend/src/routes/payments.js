@@ -435,4 +435,37 @@ router.post(
   },
 );
 
+// Development-only endpoint for payment without auth
+// @desc    Create payment order (development only)
+// @route   POST /api/payments/dev/create-order
+// @access  Public (development only)
+if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
+  router.post("/dev/create-order", async (req, res) => {
+    try {
+      const { amount, currency = "INR", items = [], shippingAddress = {} } = req.body;
+
+      // Return mock payment order for development
+      const mockOrderId = `dev_order_${Date.now()}`;
+
+      return res.json({
+        success: true,
+        data: {
+          orderId: mockOrderId,
+          razorpayOrderId: `razorpay_${mockOrderId}`,
+          amount: amount || 100,
+          currency: currency,
+          key: process.env.RAZORPAY_KEY_ID || "dev_key"
+        }
+      });
+    } catch (error) {
+      console.error("Dev payment creation error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Server error",
+        error: error.message,
+      });
+    }
+  });
+}
+
 export default router;
