@@ -195,18 +195,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 export function useApp() {
   const context = useContext(AppContext);
 
-  if (context === null || context === undefined) {
-    console.error("❌ AppContext is null/undefined - providing fallback");
-    console.error("Current context value:", context);
-    console.error("Make sure AppProvider is properly wrapping your component");
-
-    // Return a fallback context with default values to prevent crashes
-    return {
-      state: initialState,
-      dispatch: () => {
-        console.warn("Attempting to dispatch action with fallback context");
-      }
-    };
+  if (!context) {
+    console.error("AppContext is null. Make sure AppProvider is properly wrapping your component");
+    throw new Error("useApp must be used within an AppProvider");
   }
 
   return context;
