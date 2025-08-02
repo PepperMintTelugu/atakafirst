@@ -572,7 +572,7 @@ export default function CheckoutEnhanced() {
                       >
                         {savedAddresses.map((savedAddr, index) => (
                           <div
-                            key={index}
+                            key={`saved-address-${index}-${savedAddr.pincode}-${savedAddr.phone}`}
                             className={`border rounded-lg p-3 cursor-pointer transition-colors ${
                               selectedAddressIndex === index
                                 ? "border-blue-500 bg-blue-50"
