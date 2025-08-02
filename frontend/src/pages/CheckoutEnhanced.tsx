@@ -572,7 +572,7 @@ export default function CheckoutEnhanced() {
                       >
                         {savedAddresses.map((savedAddr, index) => (
                           <div
-                            key={index}
+                            key={`saved-address-${index}-${savedAddr.pincode}-${savedAddr.phone}`}
                             className={`border rounded-lg p-3 cursor-pointer transition-colors ${
                               selectedAddressIndex === index
                                 ? "border-blue-500 bg-blue-50"
@@ -968,13 +968,19 @@ export default function CheckoutEnhanced() {
                 {/* Order Items */}
                 <div key="order-items-section" className="space-y-3">
                   {items.map((item) => (
-                    <div key={item.id} className="flex items-center space-x-3">
+                    <div
+                      key={`cart-item-${item.id}`}
+                      className="flex items-center space-x-3"
+                    >
                       <img
                         src={item.image}
                         alt={item.title}
                         className="w-12 h-16 object-cover rounded"
                       />
-                      <div key="item-details" className="flex-1 min-w-0">
+                      <div
+                        key={`item-details-${item.id}`}
+                        className="flex-1 min-w-0"
+                      >
                         <p className="text-sm font-medium text-gray-900 truncate">
                           {item.title}
                         </p>
