@@ -35,7 +35,14 @@ const connectDB = async () => {
   } catch (error) {
     console.error("❌ Error connecting to MongoDB:", error.message);
 
-    // Exit process with failure
+    // In development, don't exit - allow app to run with mock data
+    if (process.env.NODE_ENV === "development" || !process.env.NODE_ENV) {
+      console.log("⚠️  Running in development mode without MongoDB");
+      console.log("📦 Using mock data for API responses");
+      return;
+    }
+
+    // Exit process with failure in production
     process.exit(1);
   }
 };

@@ -185,7 +185,7 @@ const mockBooks: Book[] = [
     description:
       "Revolutionary poetry collection that changed the landscape of Telugu literature with its progressive themes.",
     descriptionTelugu:
-      "ప్రగతిశీల భావాలతో తెలుగు సా��ిత్య క్షేత్రంలో విప్లవం తెచ్చిన కవిత్వ సంకలనం.",
+      "ప్రగతిశీల భావాలతో తెలుగు సా��ిత్య క్షేత్రంలో విప్లవం తెచ్చిన ���విత్వ సంకలనం.",
     coverImage:
       "https://via.placeholder.com/400x600/ec4899/white?text=మహాప్రస్థానం",
     images: [
@@ -220,7 +220,7 @@ const mockBooks: Book[] = [
     description:
       "A satirical novel that humorously depicts the conflicts between traditional and modern values in Indian society.",
     descriptionTelugu:
-      "భారతీయ సమాజంలో సంప్రదాయ మరియు ఆధునిక విలువల ��ధ్య వైరుధ్యాలను హాస్యభరితంగా చిత్రీకరించిన వ్య��గ్య నవల.",
+      "భారతీయ సమాజంలో సంప్రదాయ మరియు ఆధునిక విలువల ��ధ్య వైరుధ్యాలను హాస్యభర���తంగా చిత్రీకరించిన వ్య��గ్య నవల.",
     coverImage:
       "https://via.placeholder.com/400x600/f59e0b/white?text=బా��ిస్టర్+పార్వతీశం",
     images: [
@@ -305,7 +305,7 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
         });
       }
     } catch (error) {
-      console.error('Failed to load books:', error);
+      console.error("Failed to load books:", error);
       // Fallback to mock data
       setBooks(mockBooks);
       toast({
@@ -436,10 +436,10 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
           description: "Book added successfully!",
         });
       } else {
-        throw new Error(response.message || 'Failed to add book');
+        throw new Error(response.message || "Failed to add book");
       }
     } catch (error: any) {
-      console.error('Failed to add book:', error);
+      console.error("Failed to add book:", error);
       // Fallback to local state update
       const book: Book = {
         ...newBook,
@@ -495,17 +495,19 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
 
       if (response.success && response.data) {
         setBooks(
-          books.map((book) => (book.id === editingBook.id ? response.data : book)),
+          books.map((book) =>
+            book.id === editingBook.id ? response.data : book,
+          ),
         );
         toast({
           title: "Success",
           description: "Book updated successfully!",
         });
       } else {
-        throw new Error(response.message || 'Failed to update book');
+        throw new Error(response.message || "Failed to update book");
       }
     } catch (error: any) {
-      console.error('Failed to update book:', error);
+      console.error("Failed to update book:", error);
       // Fallback to local state update
       setBooks(
         books.map((book) => (book.id === editingBook.id ? editingBook : book)),
@@ -531,10 +533,10 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
           description: "Book deleted successfully!",
         });
       } else {
-        throw new Error(response.message || 'Failed to delete book');
+        throw new Error(response.message || "Failed to delete book");
       }
     } catch (error: any) {
-      console.error('Failed to delete book:', error);
+      console.error("Failed to delete book:", error);
       // Fallback to local state update
       setBooks(books.filter((book) => book.id !== id));
       toast({
@@ -980,8 +982,11 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredBooks.map((book) => (
-                    <tr key={book.id} className="border-b hover:bg-gray-50/50">
+                  {filteredBooks.map((book, index) => (
+                    <tr
+                      key={`book-row-${book.id}-${index}`}
+                      className="border-b hover:bg-gray-50/50"
+                    >
                       <td className="p-4">
                         <div className="flex items-center space-x-3">
                           <img
@@ -1064,6 +1069,7 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
                       <td className="p-4">
                         <div className="flex items-center space-x-2">
                           <Button
+                            key={`edit-${book.id}`}
                             variant="ghost"
                             size="sm"
                             onClick={() => setEditingBook(book)}
@@ -1071,6 +1077,7 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
                             <Edit3 className="w-4 h-4" />
                           </Button>
                           <Button
+                            key={`featured-${book.id}`}
                             variant="ghost"
                             size="sm"
                             onClick={() => toggleFeatured(book.id)}
@@ -1083,6 +1090,7 @@ export default function BooksManager({ onUploadImage }: BooksManagerProps) {
                             <Star className="w-4 h-4" />
                           </Button>
                           <Button
+                            key={`delete-${book.id}`}
                             variant="ghost"
                             size="sm"
                             onClick={() => handleDeleteBook(book.id)}

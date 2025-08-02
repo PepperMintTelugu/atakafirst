@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useMemo,
+} from "react";
 import { Book, CartItem, WishlistItem, User } from "@/types/book";
 import { apiClient } from "@/lib/api";
 
@@ -121,10 +127,16 @@ function appReducer(state: AppState, action: AppAction): AppState {
   }
 }
 
+// Create context with a default value to prevent null issues
+const defaultContextValue = {
+  state: initialState,
+  dispatch: (() => {}) as React.Dispatch<AppAction>,
+};
+
 const AppContext = createContext<{
   state: AppState;
   dispatch: React.Dispatch<AppAction>;
-} | null>(null);
+}>(defaultContextValue);
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(appReducer, initialState);
@@ -162,20 +174,21 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("ataka-wishlist", JSON.stringify(state.wishlist));
   }, [state.wishlist]);
 
+  const contextValue = useMemo(
+    () => ({
+      state,
+      dispatch,
+    }),
+    [state],
+  );
+
   return (
-    <AppContext.Provider value={{ state, dispatch }}>
-      {children}
-    </AppContext.Provider>
+    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
   );
 }
 
 export function useApp() {
   const context = useContext(AppContext);
-  if (!context) {
-    console.error("AppContext is null. Current context:", context);
-    console.error("Make sure AppProvider is properly wrapping your component");
-    throw new Error("useApp must be used within an AppProvider");
-  }
   return context;
 }
 

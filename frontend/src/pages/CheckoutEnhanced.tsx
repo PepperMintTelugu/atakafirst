@@ -318,22 +318,26 @@ export default function CheckoutEnhanced() {
 
       const orderData = orderResponse.data;
 
+      // Debug the order data structure
+      console.log("Payment order response:", orderResponse);
+      console.log("Order data:", orderData);
+
       // Initialize Razorpay
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID || "rzp_test_your_key_id",
-        amount: orderData.data.amount,
+        amount: orderData.amount,
         currency: "INR",
-        name: settings.brand.name,
+        name: settings?.brand?.name || "Ataka Bookstore",
         description: `Order for ${itemCount} book${itemCount > 1 ? "s" : ""}`,
-        image: settings.brand.logo,
-        order_id: orderData.data.id,
+        image: settings?.brand?.logo || "",
+        order_id: orderData.razorpayOrderId,
         prefill: {
           name: address.fullName,
           email: address.email,
           contact: address.phone,
         },
         theme: {
-          color: settings.theme.primary,
+          color: settings?.theme?.primary || "#6366f1",
         },
         handler: async (response: any) => {
           try {
@@ -450,64 +454,87 @@ export default function CheckoutEnhanced() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div key="checkout-enhanced-wrapper" className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center space-x-4">
+      <div key="checkout-header" className="bg-white border-b">
+        <div key="header-container" className="container mx-auto px-4 py-4">
+          <div key="header-nav" className="flex items-center space-x-4">
             <Link
+              key="back-link"
               to="/cart"
               className="flex items-center text-gray-600 hover:text-gray-900"
             >
-              <ArrowLeft className="w-5 h-5 mr-2" />
+              <ArrowLeft key="back-arrow" className="w-5 h-5 mr-2" />
               Back to Cart
             </Link>
-            <div className="h-6 w-px bg-gray-300"></div>
-            <h1 className="text-2xl font-bold text-gray-900">Checkout</h1>
+            <div key="separator" className="h-6 w-px bg-gray-300"></div>
+            <h1 key="title" className="text-2xl font-bold text-gray-900">
+              Checkout
+            </h1>
           </div>
 
           {/* Progress Indicator */}
-          <div className="mt-4 flex items-center space-x-4">
-            <div className="flex items-center">
+          <div
+            key="progress-indicator"
+            className="mt-4 flex items-center space-x-4"
+          >
+            <div key="step-1" className="flex items-center">
               <div
+                key="step-1-circle"
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-medium ${
                   currentStep >= 1 ? "bg-green-500" : "bg-gray-300"
                 }`}
               >
-                {currentStep > 1 ? <CheckCircle className="w-4 h-4" /> : "1"}
+                {currentStep > 1 ? (
+                  <CheckCircle key="check-icon" className="w-4 h-4" />
+                ) : (
+                  "1"
+                )}
               </div>
-              <span className="ml-2 text-sm font-medium">Shipping Address</span>
+              <span key="step-1-label" className="ml-2 text-sm font-medium">
+                Shipping Address
+              </span>
             </div>
-            <div className="flex-1 h-px bg-gray-300"></div>
-            <div className="flex items-center">
+            <div key="divider" className="flex-1 h-px bg-gray-300"></div>
+            <div key="step-2" className="flex items-center">
               <div
+                key="step-2-circle"
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-medium ${
                   currentStep >= 2 ? "bg-blue-500" : "bg-gray-300"
                 }`}
               >
                 2
               </div>
-              <span className="ml-2 text-sm font-medium">Payment</span>
+              <span key="step-2-label" className="ml-2 text-sm font-medium">
+                Payment
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div key="checkout-content" className="container mx-auto px-4 py-8">
+        <div
+          key="checkout-grid"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+        >
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-6">
+          <div key="main-content" className="lg:col-span-2 space-y-6">
             {/* Step 1: Shipping Address */}
             {currentStep === 1 && (
-              <Card>
+              <Card key="shipping-address-card">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
-                    <div className="flex items-center">
+                    <div key="title-left" className="flex items-center">
                       <MapPin className="w-5 h-5 mr-2" />
                       Shipping Address
                     </div>
-                    <div className="flex items-center space-x-2">
+                    <div
+                      key="title-actions"
+                      className="flex items-center space-x-2"
+                    >
                       <Button
+                        key="gps-button"
                         variant="outline"
                         size="sm"
                         onClick={getCurrentLocationAddress}
@@ -522,6 +549,7 @@ export default function CheckoutEnhanced() {
                       </Button>
                       {!isAddingNewAddress && (
                         <Button
+                          key="new-address-button"
                           variant="outline"
                           size="sm"
                           onClick={addNewAddress}
@@ -536,9 +564,12 @@ export default function CheckoutEnhanced() {
                 <CardContent className="space-y-4">
                   {/* Saved Addresses */}
                   {savedAddresses.length > 0 && (
-                    <div className="space-y-3">
+                    <div key="saved-addresses-section" className="space-y-3">
                       <Label>Saved Addresses</Label>
-                      <div className="grid grid-cols-1 gap-3">
+                      <div
+                        key="saved-addresses-grid"
+                        className="grid grid-cols-1 gap-3"
+                      >
                         {savedAddresses.map((savedAddr, index) => (
                           <div
                             key={index}
@@ -549,8 +580,14 @@ export default function CheckoutEnhanced() {
                             }`}
                             onClick={() => selectSavedAddress(index)}
                           >
-                            <div className="flex items-start justify-between">
-                              <div className="flex-1">
+                            <div
+                              key={`address-content-${index}`}
+                              className="flex items-start justify-between"
+                            >
+                              <div
+                                key={`address-info-${index}`}
+                                className="flex-1"
+                              >
                                 <p className="font-medium">
                                   {savedAddr.fullName}
                                 </p>
@@ -565,9 +602,15 @@ export default function CheckoutEnhanced() {
                                   {savedAddr.phone}
                                 </p>
                               </div>
-                              <div className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center">
+                              <div
+                                key={`address-radio-${index}`}
+                                className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center"
+                              >
                                 {selectedAddressIndex === index && (
-                                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                                  <div
+                                    key={`address-dot-${index}`}
+                                    className="w-2 h-2 rounded-full bg-blue-500"
+                                  ></div>
                                 )}
                               </div>
                             </div>
@@ -575,16 +618,22 @@ export default function CheckoutEnhanced() {
                         ))}
                       </div>
                       {!isAddingNewAddress && (
-                        <div className="border-t pt-4"></div>
+                        <div
+                          key="address-separator"
+                          className="border-t pt-4"
+                        ></div>
                       )}
                     </div>
                   )}
 
                   {/* Address Form */}
                   {isAddingNewAddress && (
-                    <div className="space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
+                    <div key="address-form-section" className="space-y-4">
+                      <div
+                        key="name-phone-grid"
+                        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                      >
+                        <div key="fullname-field">
                           <Label htmlFor="fullName">Full Name *</Label>
                           <div className="relative">
                             <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -599,7 +648,7 @@ export default function CheckoutEnhanced() {
                             />
                           </div>
                         </div>
-                        <div>
+                        <div key="phone-field">
                           <Label htmlFor="phone">Phone Number *</Label>
                           <div className="relative">
                             <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -617,7 +666,7 @@ export default function CheckoutEnhanced() {
                         </div>
                       </div>
 
-                      <div>
+                      <div key="email-field">
                         <Label htmlFor="email">Email Address *</Label>
                         <div className="relative">
                           <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -634,7 +683,7 @@ export default function CheckoutEnhanced() {
                         </div>
                       </div>
 
-                      <div>
+                      <div key="street-field">
                         <Label htmlFor="street">Street Address *</Label>
                         <div className="relative">
                           <Home className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -650,7 +699,7 @@ export default function CheckoutEnhanced() {
                         </div>
                       </div>
 
-                      <div>
+                      <div key="landmark-field">
                         <Label htmlFor="landmark">Landmark (Optional)</Label>
                         <Input
                           id="landmark"
@@ -662,8 +711,11 @@ export default function CheckoutEnhanced() {
                         />
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div>
+                      <div
+                        key="address-fields-grid"
+                        className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                      >
+                        <div key="city-field">
                           <Label htmlFor="city">City *</Label>
                           <Input
                             id="city"
@@ -674,7 +726,7 @@ export default function CheckoutEnhanced() {
                             placeholder="City"
                           />
                         </div>
-                        <div>
+                        <div key="state-field">
                           <Label htmlFor="state">State *</Label>
                           <Select
                             value={address.state}
@@ -686,61 +738,82 @@ export default function CheckoutEnhanced() {
                               <SelectValue placeholder="Select state" />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="andhra-pradesh">
+                              <SelectItem key="state-ap" value="andhra-pradesh">
                                 Andhra Pradesh
                               </SelectItem>
-                              <SelectItem value="telangana">
+                              <SelectItem key="state-ts" value="telangana">
                                 Telangana
                               </SelectItem>
-                              <SelectItem value="karnataka">
+                              <SelectItem key="state-ka" value="karnataka">
                                 Karnataka
                               </SelectItem>
-                              <SelectItem value="tamil-nadu">
+                              <SelectItem key="state-tn" value="tamil-nadu">
                                 Tamil Nadu
                               </SelectItem>
-                              <SelectItem value="kerala">Kerala</SelectItem>
-                              <SelectItem value="maharashtra">
+                              <SelectItem key="state-kl" value="kerala">
+                                Kerala
+                              </SelectItem>
+                              <SelectItem key="state-mh" value="maharashtra">
                                 Maharashtra
                               </SelectItem>
-                              <SelectItem value="delhi">Delhi</SelectItem>
-                              <SelectItem value="west-bengal">
+                              <SelectItem key="state-dl" value="delhi">
+                                Delhi
+                              </SelectItem>
+                              <SelectItem key="state-wb" value="west-bengal">
                                 West Bengal
                               </SelectItem>
-                              <SelectItem value="gujarat">Gujarat</SelectItem>
-                              <SelectItem value="rajasthan">
+                              <SelectItem key="state-gj" value="gujarat">
+                                Gujarat
+                              </SelectItem>
+                              <SelectItem key="state-rj" value="rajasthan">
                                 Rajasthan
                               </SelectItem>
-                              <SelectItem value="uttar-pradesh">
+                              <SelectItem key="state-up" value="uttar-pradesh">
                                 Uttar Pradesh
                               </SelectItem>
-                              <SelectItem value="bihar">Bihar</SelectItem>
-                              <SelectItem value="odisha">Odisha</SelectItem>
-                              <SelectItem value="jharkhand">
+                              <SelectItem key="state-br" value="bihar">
+                                Bihar
+                              </SelectItem>
+                              <SelectItem key="state-od" value="odisha">
+                                Odisha
+                              </SelectItem>
+                              <SelectItem key="state-jh" value="jharkhand">
                                 Jharkhand
                               </SelectItem>
-                              <SelectItem value="chhattisgarh">
+                              <SelectItem key="state-ct" value="chhattisgarh">
                                 Chhattisgarh
                               </SelectItem>
-                              <SelectItem value="madhya-pradesh">
+                              <SelectItem key="state-mp" value="madhya-pradesh">
                                 Madhya Pradesh
                               </SelectItem>
-                              <SelectItem value="haryana">Haryana</SelectItem>
-                              <SelectItem value="punjab">Punjab</SelectItem>
-                              <SelectItem value="himachal-pradesh">
+                              <SelectItem key="state-hr" value="haryana">
+                                Haryana
+                              </SelectItem>
+                              <SelectItem key="state-pb" value="punjab">
+                                Punjab
+                              </SelectItem>
+                              <SelectItem
+                                key="state-hp"
+                                value="himachal-pradesh"
+                              >
                                 Himachal Pradesh
                               </SelectItem>
-                              <SelectItem value="uttarakhand">
+                              <SelectItem key="state-uk" value="uttarakhand">
                                 Uttarakhand
                               </SelectItem>
-                              <SelectItem value="jammu-kashmir">
+                              <SelectItem key="state-jk" value="jammu-kashmir">
                                 Jammu & Kashmir
                               </SelectItem>
-                              <SelectItem value="assam">Assam</SelectItem>
-                              <SelectItem value="goa">Goa</SelectItem>
+                              <SelectItem key="state-as" value="assam">
+                                Assam
+                              </SelectItem>
+                              <SelectItem key="state-ga" value="goa">
+                                Goa
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
-                        <div>
+                        <div key="pincode-field">
                           <Label htmlFor="pincode">Pincode *</Label>
                           <Input
                             id="pincode"
@@ -754,8 +827,12 @@ export default function CheckoutEnhanced() {
                         </div>
                       </div>
 
-                      <div className="flex items-center space-x-3 pt-4 border-t">
+                      <div
+                        key="save-address-container"
+                        className="flex items-center space-x-3 pt-4 border-t"
+                      >
                         <Button
+                          key="save-button"
                           variant="outline"
                           onClick={saveCurrentAddress}
                           disabled={!address.fullName || !address.phone}
@@ -763,7 +840,7 @@ export default function CheckoutEnhanced() {
                           <Save className="w-4 h-4 mr-2" />
                           Save Address
                         </Button>
-                        <p className="text-sm text-gray-500">
+                        <p key="save-text" className="text-sm text-gray-500">
                           Save for faster checkout next time
                         </p>
                       </div>
@@ -775,7 +852,7 @@ export default function CheckoutEnhanced() {
 
             {/* Step 2: Payment */}
             {currentStep === 2 && (
-              <Card>
+              <Card key="payment-card">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <CreditCard className="w-5 h-5 mr-2" />
@@ -783,8 +860,9 @@ export default function CheckoutEnhanced() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="space-y-3">
+                  <div key="payment-options" className="space-y-3">
                     <div
+                      key="razorpay-option"
                       className={`border rounded-lg p-4 cursor-pointer transition-colors ${
                         paymentMethod === "razorpay"
                           ? "border-blue-500 bg-blue-50"
@@ -792,14 +870,26 @@ export default function CheckoutEnhanced() {
                       }`}
                       onClick={() => setPaymentMethod("razorpay")}
                     >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center">
+                      <div
+                        key="razorpay-content"
+                        className="flex items-center justify-between"
+                      >
+                        <div
+                          key="razorpay-info"
+                          className="flex items-center space-x-3"
+                        >
+                          <div
+                            key="razorpay-radio"
+                            className="w-4 h-4 rounded-full border-2 border-blue-500 flex items-center justify-center"
+                          >
                             {paymentMethod === "razorpay" && (
-                              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                              <div
+                                key="razorpay-dot"
+                                className="w-2 h-2 rounded-full bg-blue-500"
+                              ></div>
                             )}
                           </div>
-                          <div>
+                          <div key="razorpay-text">
                             <h3 className="font-medium">
                               Razorpay (Recommended)
                             </h3>
@@ -813,16 +903,26 @@ export default function CheckoutEnhanced() {
                     </div>
 
                     <div
+                      key="cod-option"
                       className={`border rounded-lg p-4 cursor-pointer transition-colors opacity-50 ${
                         paymentMethod === "cod"
                           ? "border-gray-500 bg-gray-50"
                           : "border-gray-200"
                       }`}
                     >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-4 h-4 rounded-full border-2 border-gray-400"></div>
-                          <div>
+                      <div
+                        key="cod-content"
+                        className="flex items-center justify-between"
+                      >
+                        <div
+                          key="cod-info"
+                          className="flex items-center space-x-3"
+                        >
+                          <div
+                            key="cod-radio"
+                            className="w-4 h-4 rounded-full border-2 border-gray-400"
+                          ></div>
+                          <div key="cod-text">
                             <h3 className="font-medium text-gray-500">
                               Cash on Delivery
                             </h3>
@@ -835,14 +935,20 @@ export default function CheckoutEnhanced() {
                     </div>
                   </div>
 
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <div className="flex items-center space-x-2 text-blue-600">
+                  <div
+                    key="secure-payment-info"
+                    className="bg-blue-50 border border-blue-200 rounded-lg p-4"
+                  >
+                    <div
+                      key="secure-header"
+                      className="flex items-center space-x-2 text-blue-600"
+                    >
                       <Lock className="w-4 h-4" />
                       <span className="text-sm font-medium">
                         Secure Payment
                       </span>
                     </div>
-                    <p className="text-sm text-blue-600 mt-1">
+                    <p key="secure-text" className="text-sm text-blue-600 mt-1">
                       Your payment information is encrypted and secured by
                       Razorpay.
                     </p>
@@ -853,14 +959,14 @@ export default function CheckoutEnhanced() {
           </div>
 
           {/* Order Summary */}
-          <div className="lg:col-span-1">
-            <Card className="sticky top-24">
+          <div key="order-summary" className="lg:col-span-1">
+            <Card key="order-summary-card" className="sticky top-24">
               <CardHeader>
                 <CardTitle>Order Summary</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {/* Order Items */}
-                <div className="space-y-3">
+                <div key="order-items-section" className="space-y-3">
                   {items.map((item) => (
                     <div key={item.id} className="flex items-center space-x-3">
                       <img
@@ -868,7 +974,7 @@ export default function CheckoutEnhanced() {
                         alt={item.title}
                         className="w-12 h-16 object-cover rounded"
                       />
-                      <div className="flex-1 min-w-0">
+                      <div key="item-details" className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 truncate">
                           {item.title}
                         </p>
@@ -883,15 +989,21 @@ export default function CheckoutEnhanced() {
                   ))}
                 </div>
 
-                <Separator />
+                <Separator key="order-separator" />
 
                 {/* Pricing Details */}
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
+                <div key="pricing-details-section" className="space-y-2">
+                  <div
+                    key="subtotal-row"
+                    className="flex justify-between text-sm"
+                  >
                     <span>Subtotal ({itemCount} items)</span>
                     <span>₹{totalAmount.toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between text-sm">
+                  <div
+                    key="shipping-row"
+                    className="flex justify-between text-sm"
+                  >
                     <span>Shipping</span>
                     <span>
                       {shippingCost === 0 ? (
@@ -902,29 +1014,44 @@ export default function CheckoutEnhanced() {
                     </span>
                   </div>
                   <Separator />
-                  <div className="flex justify-between font-medium text-lg">
+                  <div
+                    key="total-row"
+                    className="flex justify-between font-medium text-lg"
+                  >
                     <span>Total</span>
                     <span>₹{finalAmount.toLocaleString()}</span>
                   </div>
                 </div>
 
                 {shippingCost === 0 && (
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                    <div className="flex items-center space-x-2 text-green-600">
+                  <div
+                    key="free-delivery-banner"
+                    className="bg-green-50 border border-green-200 rounded-lg p-3"
+                  >
+                    <div
+                      key="free-delivery-header"
+                      className="flex items-center space-x-2 text-green-600"
+                    >
                       <Truck className="w-4 h-4" />
                       <span className="text-sm font-medium">FREE DELIVERY</span>
                     </div>
-                    <p className="text-sm text-green-600">
+                    <p
+                      key="free-delivery-text"
+                      className="text-sm text-green-600"
+                    >
                       Your order qualifies for free shipping!
                     </p>
                   </div>
                 )}
 
                 <Button
+                  key="place-order-button"
                   onClick={handlePlaceOrder}
                   className="w-full h-12"
                   disabled={isProcessing}
-                  style={{ backgroundColor: settings.theme.primary }}
+                  style={{
+                    backgroundColor: settings?.theme?.primary || "#6366f1",
+                  }}
                 >
                   {isProcessing
                     ? "Processing..."
@@ -933,7 +1060,10 @@ export default function CheckoutEnhanced() {
                       : `Pay ₹${finalAmount.toLocaleString()}`}
                 </Button>
 
-                <div className="text-center text-xs text-gray-500">
+                <div
+                  key="terms-section"
+                  className="text-center text-xs text-gray-500"
+                >
                   <p>
                     By placing your order, you agree to our{" "}
                     <Link to="/terms" className="underline">

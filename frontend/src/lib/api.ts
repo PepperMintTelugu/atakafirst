@@ -1,6 +1,6 @@
 // API client for backend communication
-export const API_BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:5000";
+// Use relative URLs - Vite proxy will route /api calls to backend
+export const API_BASE_URL = "";
 
 interface ApiResponse<T> {
   success: boolean;
@@ -131,6 +131,17 @@ class ApiClient {
 
   // Orders API
   async getOrders() {
+    // In development, try the dev admin endpoint first (for admin access without auth)
+    if (import.meta.env.DEV) {
+      try {
+        return this.request<ApiResponse<any[]>>("/api/orders/dev/admin");
+      } catch (error) {
+        console.warn(
+          "Dev admin endpoint failed, falling back to regular endpoint:",
+          error,
+        );
+      }
+    }
     return this.request<ApiResponse<any[]>>("/api/orders");
   }
 
@@ -211,6 +222,28 @@ class ApiClient {
     shippingAddress: any;
     notes?: any;
   }) {
+    // In development, try the dev endpoint first (for payment without auth)
+    if (import.meta.env.DEV) {
+      try {
+        return this.request<
+          ApiResponse<{
+            orderId: string;
+            razorpayOrderId: string;
+            amount: number;
+            currency: string;
+          }>
+        >("/api/payments/dev/create-order", {
+          method: "POST",
+          body: JSON.stringify(orderData),
+        });
+      } catch (error) {
+        console.warn(
+          "Dev payment endpoint failed, falling back to regular endpoint:",
+          error,
+        );
+      }
+    }
+
     return this.request<
       ApiResponse<{
         orderId: string;
@@ -230,6 +263,26 @@ class ApiClient {
     razorpaySignature: string;
     orderId: string;
   }) {
+    // In development, try the dev endpoint first
+    if (import.meta.env.DEV) {
+      try {
+        return this.request<
+          ApiResponse<{
+            verified: boolean;
+            order: any;
+          }>
+        >("/api/payments/dev/verify-payment", {
+          method: "POST",
+          body: JSON.stringify(paymentData),
+        });
+      } catch (error) {
+        console.warn(
+          "Dev payment verification failed, falling back to regular endpoint:",
+          error,
+        );
+      }
+    }
+
     return this.request<
       ApiResponse<{
         verified: boolean;

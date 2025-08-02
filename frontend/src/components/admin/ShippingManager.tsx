@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -316,6 +316,7 @@ export default function ShippingManager() {
     null,
   );
   const [showSettings, setShowSettings] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
   const { toast } = useToast();
 
   // Load shipments on component mount
